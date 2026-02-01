@@ -1,0 +1,48 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="150"
+             x:Class="Front_End.Components.Statcard">
+
+    <Border Background="White"
+            CornerRadius="16"
+            BorderBrush="#F3F4F6"
+            BorderThickness="1"
+            Padding="24"
+            MinWidth="200">
+        
+        <StackPanel Spacing="16">
+            
+            <!-- Icon Container -->
+            <Border Name="IconContainer"
+                    Width="40" 
+                    Height="40" 
+                    CornerRadius="12"
+                    HorizontalAlignment="Left">
+                <!-- Icon will be set from code-behind -->
+                <TextBlock Name="IconText"
+                           FontSize="20"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Border>
+            
+            <!-- Stats Content -->
+            <StackPanel>
+                <!-- Label -->
+                <TextBlock Name="LabelText"
+                           FontSize="10" 
+                           FontWeight="Bold" 
+                           Foreground="#9CA3AF"
+                           LetterSpacing="0.5"/>
+                
+                <!-- Value -->
+                <TextBlock Name="ValueText"
+                           FontSize="30" 
+                           FontWeight="Bold" 
+                           Foreground="#111827"
+                           Margin="0,4,0,0"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

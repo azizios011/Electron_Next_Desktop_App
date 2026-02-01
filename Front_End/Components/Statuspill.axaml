@@ -1,0 +1,40 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="100" d:DesignHeight="30"
+             x:Class="Front_End.Components.Statuspill">
+
+    <!-- Status Pill Container -->
+    <Border Name="PillContainer"
+            CornerRadius="12"
+            Padding="12,4"
+            HorizontalAlignment="Center">
+        
+        <TextBlock Name="StatusText"
+                   FontSize="12" 
+                   FontWeight="SemiBold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+    </Border>
+    
+    <!-- 
+    Styles will be applied from code-behind based on status:
+    
+    Paid/Completed:
+    - Background: #D1FAE5 (emerald-50)
+    - Foreground: #10B981 (emerald-600)
+    
+    Pending/Ongoing:
+    - Background: #FEF3C7 (amber-50)
+    - Foreground: #F59E0B (amber-600)
+    
+    Declined:
+    - Background: #FEE2E2 (rose-50)
+    - Foreground: #EF4444 (rose-600)
+    
+    Default:
+    - Background: #F3F4F6 (gray-100)
+    - Foreground: #6B7280 (gray-600)
+    -->
+</UserControl>
