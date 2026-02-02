@@ -3,25 +3,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="using:Front_End.Components"
-        mc:Ignorable="d" d:DesignWidth="1400" d:DesignHeight="900"
+        xmlns:views="using:Front_End.Views"
+        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="Front_End.Views.MainWindow"
         Title="Invoice Dashboard"
-        Width="1920" Height="920"
+        MinWidth="1200"
+        MinHeight="700"
         Background="#F9FAFB">
 
     <Window.Styles>
         <Style Selector="Button.primary">
-            <Setter Property="Background" Value="#5454F4"/>
+            <Setter Property="Background" Value="#10B981"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="CornerRadius" Value="12"/>
-            <Setter Property="Padding" Value="24,10"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="20,12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
         </Style>
         
         <Style Selector="Button.primary:pointerover">
-            <Setter Property="Background" Value="#2563EB"/>
+            <Setter Property="Background" Value="#059669"/>
         </Style>
         
         <Style Selector="Button.secondary">
@@ -31,7 +34,7 @@
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="12"/>
             <Setter Property="Padding" Value="16,10"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontWeight" Value="Medium"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Cursor" Value="Hand"/>
         </Style>
@@ -41,140 +44,181 @@
         </Style>
     </Window.Styles>
 
-    <Grid RowDefinitions="Auto,*" Margin="0,0,0,80">
+    <Panel>
+        <!-- Main Layout -->
+        <Grid RowDefinitions="Auto,*">
 
-        <!-- Navbar Component: use the Navbar control directly -->
-        <local:Navbar Grid.Row="0" />
+            <!-- Navbar Component (shown only on Dashboard) -->
+            <local:Navbar Grid.Row="0" Name="MainNavbar"/>
 
-        <!-- Main Content -->
-        <ScrollViewer Grid.Row="1">
-            <!-- Center a fixed-width content column so all inner sections align to the same left edge -->
-            <StackPanel MaxWidth="1400" Margin="48,40,48,0" HorizontalAlignment="Center">
+            <!-- Content Area - Switches between Dashboard and Invoice -->
+            <Panel Grid.Row="1" Name="ContentArea">
                 
-                <!-- Header Section -->
-                <Grid Margin="0,0,0,32" HorizontalAlignment="Stretch">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <!-- Left: Title and Subtitle -->
-                    <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <TextBlock Text="Overview" 
-                                   FontSize="30" 
-                                   FontWeight="Bold" 
-                                   Foreground="#111827"/>
-                        <TextBlock Text="Here is your stats for today." 
-                                   FontSize="14" 
-                                   Foreground="#6B7280" 
-                                   Margin="0,4,0,0"/>
-                    </StackPanel>
-                    
-                    <!-- Right: Action Buttons -->
-                    <StackPanel Grid.Column="1" 
-                                Orientation="Horizontal" 
-                                Spacing="12"
-                                VerticalAlignment="Center" HorizontalAlignment="Right">
+                <!-- Dashboard Content -->
+                <ScrollViewer Name="DashboardContent" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel Margin="64,40,64,48" HorizontalAlignment="Stretch">
                         
-                        <!-- Calendar/Date Filter Button -->
-                        <Button Classes="secondary">
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <!-- Calendar Icon -->
-                                <Path Data="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM7 11h5v5H7z" 
-                                      Fill="#374151" 
-                                      Width="18" 
-                                      Height="18"
-                                      Stretch="Uniform"/>
-                                <TextBlock Text="Last 30 days" 
-                                           VerticalAlignment="Center"
-                                           FontSize="14"
-                                           FontWeight="SemiBold"/>
-                                <!-- Dropdown Arrow -->
-                                <Path Data="M19 9l-7 7-7-7z" 
-                                      Fill="#9CA3AF" 
-                                      Width="16" 
-                                      Height="16"
-                                      Stretch="Uniform"/>
+                        <!-- Header Section -->
+                        <Grid Margin="0,0,0,32" HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <!-- Left: Title and Subtitle -->
+                            <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <TextBlock Text="Overview" 
+                                           FontSize="28" 
+                                           FontWeight="Bold" 
+                                           Foreground="#111827"/>
+                                <TextBlock Text="Here is your stats for today." 
+                                           FontSize="14" 
+                                           Foreground="#9CA3AF" 
+                                           Margin="0,6,0,0"/>
                             </StackPanel>
-                        </Button>
-                        
-                        <!-- Create Invoice Button -->
-                        <Button Classes="primary" 
-                                Name="CreateInvoiceButton"
-                                Click="OnCreateInvoiceClick">
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <!-- Plus Icon -->
-                                <Path Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" 
-                                      Fill="White" 
-                                      Width="18" 
-                                      Height="18"
-                                      Stretch="Uniform"
-                                      StrokeThickness="3"/>
-                                <TextBlock Text="Create Invoice" 
-                                           VerticalAlignment="Center"
-                                           FontSize="14"
-                                           FontWeight="Bold"/>
+                            
+                            <!-- Right: Action Buttons -->
+                            <StackPanel Grid.Column="1" 
+                                        Orientation="Horizontal" 
+                                        Spacing="12"
+                                        VerticalAlignment="Center" 
+                                        HorizontalAlignment="Right">
+                                
+                                <!-- Calendar/Date Filter Button -->
+                                <Button Classes="secondary">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <TextBlock Text="Last 30 days" 
+                                                   VerticalAlignment="Center"
+                                                   FontSize="14"
+                                                   FontWeight="Medium"/>
+                                        <!-- Dropdown Arrow -->
+                                        <Path Data="M7 10l5 5 5-5z" 
+                                              Fill="#9CA3AF" 
+                                              Width="16" 
+                                              Height="16"
+                                              Stretch="Uniform"
+                                              VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+                                
+                                <!-- Create Invoice Button -->
+                                <Button Classes="primary" 
+                                        Name="CreateInvoiceButton"
+                                        Click="OnCreateInvoiceClick">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <!-- Plus Icon -->
+                                        <TextBlock Text="+" 
+                                                   FontSize="18"
+                                                   FontWeight="Bold"
+                                                   VerticalAlignment="Center"
+                                                   Margin="0,-2,0,0"/>
+                                        <TextBlock Text="Create Invoice" 
+                                                   VerticalAlignment="Center"
+                                                   FontSize="14"
+                                                   FontWeight="SemiBold"/>
+                                    </StackPanel>
+                                </Button>
                             </StackPanel>
-                        </Button>
+                        </Grid>
+
+                        <!-- Stats Grid - Responsive with uniform stretch -->
+                        <Grid Margin="0,0,0,32" Name="StatsGrid" HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" MinWidth="200"/>
+                                <ColumnDefinition Width="24"/>
+                                <ColumnDefinition Width="*" MinWidth="200"/>
+                                <ColumnDefinition Width="24"/>
+                                <ColumnDefinition Width="*" MinWidth="200"/>
+                                <ColumnDefinition Width="24"/>
+                                <ColumnDefinition Width="*" MinWidth="200"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <!-- Clients Card -->
+                            <local:StatCard Grid.Column="0" 
+                                            Name="ClientsCard"
+                                            HorizontalAlignment="Stretch"/>
+                            
+                            <!-- Invoices Card -->
+                            <local:StatCard Grid.Column="2" 
+                                            Name="InvoicesCard"
+                                            HorizontalAlignment="Stretch"/>
+                            
+                            <!-- Invoiced Card -->
+                            <local:StatCard Grid.Column="4" 
+                                            Name="InvoicedCard"
+                                            HorizontalAlignment="Stretch"/>
+                            
+                            <!-- Paid Card -->
+                            <local:StatCard Grid.Column="6" 
+                                            Name="PaidCard"
+                                            HorizontalAlignment="Stretch"/>
+                        </Grid>
+
+                        <!-- Two Column Section: Transactions and Projects - Responsive -->
+                        <Grid ColumnDefinitions="*,32,*" HorizontalAlignment="Stretch">
+
+                            <!-- Recent Transactions -->
+                            <Border Grid.Column="0" 
+                                    Background="White" 
+                                    CornerRadius="20" 
+                                    BorderBrush="#F3F4F6" 
+                                    BorderThickness="1" 
+                                    Padding="28"
+                                    MinWidth="400">
+                                <StackPanel>
+                                    <TextBlock Text="Recent Transactions" 
+                                               FontSize="18" 
+                                               FontWeight="Bold" 
+                                               Foreground="#111827" 
+                                               Margin="0,0,0,24"/>
+                                    <StackPanel Name="TransactionsPanel" Spacing="20">
+                                        <!-- Transaction items will be populated from code-behind -->
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Recent Projects -->
+                            <Border Grid.Column="2" 
+                                    Background="White" 
+                                    CornerRadius="20" 
+                                    BorderBrush="#F3F4F6" 
+                                    BorderThickness="1" 
+                                    Padding="28"
+                                    MinWidth="400">
+                                <StackPanel>
+                                    <TextBlock Text="Recent Projects" 
+                                               FontSize="18" 
+                                               FontWeight="Bold" 
+                                               Foreground="#111827" 
+                                               Margin="0,0,0,24"/>
+                                    <StackPanel Name="ProjectsPanel" Spacing="20">
+                                        <!-- Project items will be populated from code-behind -->
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
                     </StackPanel>
-                </Grid>
+                </ScrollViewer>
 
-                <!-- Stats Grid - StatCard Components -->
-                <Grid Margin="0,0,0,40" Name="StatsGrid" HorizontalAlignment="Stretch">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <!-- StatCard components will be added here from code-behind -->
-                </Grid>
- 
-                <!-- AI Insight Bar -->
-                <Border Name="AiInsightBorder" IsVisible="False" Margin="0,0,0,40" Padding="16" CornerRadius="16" BorderThickness="1" BorderBrush="#DBEAFE" HorizontalAlignment="Stretch">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
-                            <GradientStop Color="#EFF6FF" Offset="0"/>
-                            <GradientStop Color="#E0E7FF" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
-                    
-                    <StackPanel Orientation="Horizontal" Spacing="12">
-                        <!-- Lightning Icon Container -->
-                        <Border Width="32" Height="32" CornerRadius="16" Background="#DBEAFE" VerticalAlignment="Center">
-                            <Path Data="M13 10V3L4 14h7v7l9-11h-7z" Fill="#2563EB" Width="16" Height="16" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        
-                        <!-- AI Summary Text -->
-                        <TextBlock Name="AiSummaryText" Text="No summary available" FontSize="14" FontWeight="Medium" FontStyle="Italic" Foreground="#1E40AF" VerticalAlignment="Center" TextWrapping="Wrap"/>
-                    </StackPanel>
-                </Border>
+                <!-- Invoice View (hidden by default) -->
+                <views:InvoiceView Name="InvoiceContent" IsVisible="False"/>
+                
+            </Panel>
+        </Grid>
 
-                <!-- Two Column Section: Transactions and Projects -->
-                <Grid ColumnDefinitions="*,32,*" HorizontalAlignment="Stretch">
-
-                    <!-- Recent Transactions -->
-                    <Border Grid.Column="0" Background="White" CornerRadius="24" BorderBrush="#F3F4F6" BorderThickness="1" Padding="32">
-                        <StackPanel>
-                            <TextBlock Text="Recent Transactions" FontSize="20" FontWeight="Bold" Foreground="#111827" Margin="0,0,0,32"/>
-                            <StackPanel Name="TransactionsPanel" Spacing="24">
-                                <!-- Transaction items will be populated from code-behind -->
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
-
-                    <!-- Recent Projects -->
-                    <Border Grid.Column="2" Background="White" CornerRadius="24" BorderBrush="#F3F4F6" BorderThickness="1" Padding="32">
-                        <StackPanel>
-                            <TextBlock Text="Recent Projects" FontSize="20" FontWeight="Bold" Foreground="#111827" Margin="0,0,0,32"/>
-                            <StackPanel Name="ProjectsPanel" Spacing="24">
-                                <!-- Project items will be populated from code-behind -->
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
-                </Grid>
-
-            </StackPanel>
-        </ScrollViewer>
-    </Grid>
+        <!-- Sidebar Overlay (initially hidden) -->
+        <Panel Name="SidebarOverlay" IsVisible="False">
+            <!-- Dark Overlay Background -->
+            <Border Name="OverlayBackground" 
+                    Background="#80000000" 
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch"/>
+            
+            <!-- Sidebar -->
+            <local:Sidebar Name="MainSidebar" 
+                           HorizontalAlignment="Left" 
+                           VerticalAlignment="Stretch"/>
+        </Panel>
+    </Panel>
 </Window>

@@ -26,16 +26,22 @@ build_property.EnableCodeStyleSeverity =
 [C:/Github/Repositories/Avalonia_Front-End_Desktop_App/Front_End/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Github/Repositories/Avalonia_Front-End_Desktop_App/Front_End/Components/Createinvoicemodal.axaml]
-build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
-
 [C:/Github/Repositories/Avalonia_Front-End_Desktop_App/Front_End/Components/Navbar.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Github/Repositories/Avalonia_Front-End_Desktop_App/Front_End/Components/Statcard.axaml]
+[C:/Github/Repositories/Avalonia_Front-End_Desktop_App/Front_End/Components/ProjectItem.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Github/Repositories/Avalonia_Front-End_Desktop_App/Front_End/Components/Statuspill.axaml]
+[C:/Github/Repositories/Avalonia_Front-End_Desktop_App/Front_End/Components/Sidebar.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Github/Repositories/Avalonia_Front-End_Desktop_App/Front_End/Components/StatCard.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Github/Repositories/Avalonia_Front-End_Desktop_App/Front_End/Components/TransactionItem.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Github/Repositories/Avalonia_Front-End_Desktop_App/Front_End/Views/InvoiceView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Github/Repositories/Avalonia_Front-End_Desktop_App/Front_End/Views/MainWindow.axaml]
