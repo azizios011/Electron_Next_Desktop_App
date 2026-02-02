@@ -1,0 +1,382 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1400" d:DesignHeight="900"
+             x:Class="Front_End.Views.InvoiceView"
+             Background="#F8FAFC">
+
+    <UserControl.Styles>
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style Selector="TextBox:focus /template/ Border">
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style Selector="Button.link-btn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#3B82F6"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style Selector="Button.link-btn:pointerover">
+            <Setter Property="Foreground" Value="#2563EB"/>
+        </Style>
+        <Style Selector="Button.logo-btn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.logo-btn:pointerover">
+            <Setter Property="Opacity" Value="0.8"/>
+        </Style>
+        <Style Selector="ToggleSwitch">
+            <Setter Property="OnContent" Value=""/>
+            <Setter Property="OffContent" Value=""/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto,*">
+        
+        <!-- Top Header Bar -->
+        <Border Grid.Row="0" 
+                Background="#1E3A5F" 
+                Padding="24,12">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <!-- Left: Clickable Logo (Opens Sidebar) -->
+                <Button Name="MenuButton" Classes="logo-btn" VerticalAlignment="Center">
+                    <StackPanel Spacing="2">
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <Border Width="36" Height="36" CornerRadius="10" Background="#3B82F6">
+                                <Path Data="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" 
+                                      Fill="White" 
+                                      Width="18" 
+                                      Height="18" 
+                                      Stretch="Uniform"
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                            </Border>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Modern Invoice" 
+                                           FontSize="16" 
+                                           FontWeight="SemiBold" 
+                                           Foreground="White"/>
+                                <TextBlock Text="Automatic saving..." 
+                                           FontSize="12" 
+                                           Foreground="#94A3B8"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <TextBlock Text="Open Menu" 
+                                   FontSize="10" 
+                                   Foreground="#60A5FA"
+                                   Margin="48,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Right: Actions -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="16" VerticalAlignment="Center">
+                    <!-- Currency Selector -->
+                    <Border Background="White" CornerRadius="8" Padding="12,8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="US" FontSize="12" Foreground="#6B7280" VerticalAlignment="Center"/>
+                            <TextBlock Text="USD" FontSize="14" FontWeight="SemiBold" Foreground="#111827" VerticalAlignment="Center"/>
+                            <Path Data="M7 10l5 5 5-5z" Fill="#6B7280" Width="12" Height="12" Stretch="Uniform" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- Preview Button -->
+                    <Button Background="Transparent" BorderThickness="0" Cursor="Hand">
+                        <TextBlock Text="Preview" Foreground="White" FontSize="14"/>
+                    </Button>
+                    
+                    <!-- Download Button -->
+                    <Button Background="Transparent" BorderThickness="0" Cursor="Hand">
+                        <TextBlock Text="Download" Foreground="White" FontSize="14"/>
+                    </Button>
+                    
+                    <!-- Send Invoice Button -->
+                    <Button Background="#3B82F6" 
+                            Foreground="White" 
+                            CornerRadius="8" 
+                            Padding="16,10"
+                            Cursor="Hand">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Path Data="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" 
+                                  Fill="White" 
+                                  Width="16" 
+                                  Height="16" 
+                                  Stretch="Uniform"/>
+                            <TextBlock Text="Send Invoice" FontWeight="SemiBold" FontSize="14"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled">
+            <Border Background="White" 
+                    CornerRadius="16" 
+                    Margin="80,40,80,40"
+                    Padding="48"
+                    BoxShadow="0 4 24 0 #10000000">
+                
+                <StackPanel Spacing="32">
+                    
+                    <!-- Invoice Header -->
+                    <Grid ColumnDefinitions="*,Auto">
+                        <!-- Left: Invoice Number -->
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Invoice #001" 
+                                       FontSize="36" 
+                                       FontWeight="Light" 
+                                       Foreground="#CBD5E1"/>
+                            <TextBlock Text="Generated on 2026-02-02" 
+                                       FontSize="13" 
+                                       Foreground="#94A3B8"
+                                       Margin="0,4,0,0"/>
+                        </StackPanel>
+                        
+                        <!-- Right: Dates and Options -->
+                        <StackPanel Grid.Column="1" Spacing="16" MinWidth="200">
+                            <!-- Date Issued -->
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="DATE ISSUED" 
+                                           FontSize="11" 
+                                           FontWeight="SemiBold" 
+                                           Foreground="#94A3B8"
+                                           LetterSpacing="0.5"/>
+                                <TextBlock Text="02/02/2026" 
+                                           FontSize="14" 
+                                           Foreground="#111827"/>
+                            </StackPanel>
+                            
+                            <!-- Due Date -->
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="DUE DATE" 
+                                           FontSize="11" 
+                                           FontWeight="SemiBold" 
+                                           Foreground="#94A3B8"
+                                           LetterSpacing="0.5"/>
+                                <TextBlock Text="mm/dd/yyyy" 
+                                           FontSize="14" 
+                                           Foreground="#CBD5E1"/>
+                            </StackPanel>
+                            
+                            <!-- Toggles -->
+                            <StackPanel Spacing="8" Margin="0,8,0,0">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBlock Text="Late fees" FontSize="14" Foreground="#6B7280" VerticalAlignment="Center"/>
+                                    <ToggleSwitch Grid.Column="1" IsChecked="False"/>
+                                </Grid>
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBlock Text="Show Notes" FontSize="14" Foreground="#6B7280" VerticalAlignment="Center"/>
+                                    <ToggleSwitch Grid.Column="1" IsChecked="True"/>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Issued By / Issued To Section -->
+                    <Grid ColumnDefinitions="*,40,*" Margin="0,16,0,0">
+                        <!-- Issued By -->
+                        <StackPanel Grid.Column="0" Spacing="12">
+                            <TextBlock Text="ISSUED BY" 
+                                       FontSize="11" 
+                                       FontWeight="SemiBold" 
+                                       Foreground="#94A3B8"
+                                       LetterSpacing="0.5"/>
+                            <Border Background="#F8FAFC" CornerRadius="8" Padding="16,12">
+                                <TextBox Watermark="Your Email" 
+                                         Foreground="#6B7280"
+                                         FontSize="14"/>
+                            </Border>
+                            <Border Background="#F8FAFC" CornerRadius="8" Padding="16,12" MinHeight="80">
+                                <TextBox Watermark="Company address &amp; details" 
+                                         Foreground="#6B7280"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="True"
+                                         FontSize="14"/>
+                            </Border>
+                        </StackPanel>
+                        
+                        <!-- Issued To -->
+                        <StackPanel Grid.Column="2" Spacing="12">
+                            <TextBlock Text="ISSUED TO" 
+                                       FontSize="11" 
+                                       FontWeight="SemiBold" 
+                                       Foreground="#94A3B8"
+                                       LetterSpacing="0.5"/>
+                            <Border Background="#F8FAFC" CornerRadius="8" Padding="16,12">
+                                <TextBox Watermark="Client Email" 
+                                         Foreground="#6B7280"
+                                         FontSize="14"/>
+                            </Border>
+                            <Border Background="#F8FAFC" CornerRadius="8" Padding="16,12" MinHeight="80">
+                                <TextBox Watermark="Client address &amp; details" 
+                                         Foreground="#6B7280"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="True"
+                                         FontSize="14"/>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Separator -->
+                    <Border Height="1" Background="#E2E8F0" Margin="0,16,0,16"/>
+
+                    <!-- Line Items Header -->
+                    <Grid ColumnDefinitions="*,80,120,100" Margin="0,0,0,8">
+                        <TextBlock Grid.Column="0" Text="DESCRIPTION" 
+                                   FontSize="11" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="#94A3B8"
+                                   LetterSpacing="0.5"/>
+                        <TextBlock Grid.Column="1" Text="QTY" 
+                                   FontSize="11" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="#94A3B8"
+                                   LetterSpacing="0.5"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="2" Text="UNIT PRICE" 
+                                   FontSize="11" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="#94A3B8"
+                                   LetterSpacing="0.5"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="3" Text="TOTAL" 
+                                   FontSize="11" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="#94A3B8"
+                                   LetterSpacing="0.5"
+                                   HorizontalAlignment="Right"/>
+                    </Grid>
+
+                    <!-- Line Item Row -->
+                    <Grid ColumnDefinitions="*,80,120,100" Margin="0,0,0,16">
+                        <StackPanel Grid.Column="0">
+                            <TextBox Text="What is this for?" 
+                                     Foreground="#111827"
+                                     FontSize="14"
+                                     FontWeight="Medium"/>
+                            <TextBox Watermark="Add a detailed description..." 
+                                     Foreground="#94A3B8"
+                                     FontSize="13"
+                                     Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <Border Grid.Column="1" 
+                                Background="#F8FAFC" 
+                                CornerRadius="6" 
+                                Padding="12,8"
+                                HorizontalAlignment="Center"
+                                MinWidth="60">
+                            <TextBox Text="1" 
+                                     HorizontalAlignment="Center"
+                                     Foreground="#111827"
+                                     FontSize="14"/>
+                        </Border>
+                        <Border Grid.Column="2" 
+                                Background="#F8FAFC" 
+                                CornerRadius="6" 
+                                Padding="12,8"
+                                HorizontalAlignment="Center"
+                                MinWidth="80">
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <TextBlock Text="$" Foreground="#94A3B8" FontSize="14" VerticalAlignment="Center"/>
+                                <TextBox Text="0" 
+                                         Foreground="#111827"
+                                         FontSize="14"
+                                         MinWidth="40"/>
+                            </StackPanel>
+                        </Border>
+                        <TextBlock Grid.Column="3" 
+                                   Text="$0.00" 
+                                   FontSize="14" 
+                                   FontWeight="SemiBold"
+                                   Foreground="#111827"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <!-- Add Line Item Button -->
+                    <Button Classes="link-btn" Margin="0,0,0,16">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="+" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="Add Line Item" FontSize="14"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Separator -->
+                    <Border Height="1" Background="#E2E8F0" Margin="0,0,0,24"/>
+
+                    <!-- Notes and Totals -->
+                    <Grid ColumnDefinitions="*,40,Auto">
+                        <!-- Notes & Terms -->
+                        <StackPanel Grid.Column="0" Spacing="12">
+                            <TextBlock Text="NOTES &amp; TERMS" 
+                                       FontSize="11" 
+                                       FontWeight="SemiBold" 
+                                       Foreground="#94A3B8"
+                                       LetterSpacing="0.5"/>
+                            <Border Background="#F8FAFC" CornerRadius="8" Padding="16" MinHeight="100">
+                                <TextBox Text="Thanks for your business!" 
+                                         Foreground="#111827"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="True"
+                                         FontSize="14"/>
+                            </Border>
+                        </StackPanel>
+                        
+                        <!-- Totals -->
+                        <StackPanel Grid.Column="2" Spacing="12" MinWidth="200">
+                            <!-- Subtotal -->
+                            <Grid ColumnDefinitions="*,Auto">
+                                <TextBlock Text="Subtotal" FontSize="14" Foreground="#6B7280"/>
+                                <TextBlock Grid.Column="1" Text="$0.00" FontSize="14" Foreground="#111827"/>
+                            </Grid>
+                            
+                            <!-- Add Discount -->
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Button Classes="link-btn" HorizontalAlignment="Left">
+                                    <TextBlock Text="Add Discount" FontSize="14"/>
+                                </Button>
+                                <TextBlock Grid.Column="1" Text="0%" FontSize="14" Foreground="#94A3B8"/>
+                            </Grid>
+                            
+                            <!-- Add Tax -->
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Button Classes="link-btn" HorizontalAlignment="Left">
+                                    <TextBlock Text="Add Tax" FontSize="14"/>
+                                </Button>
+                                <TextBlock Grid.Column="1" Text="0%" FontSize="14" Foreground="#94A3B8"/>
+                            </Grid>
+                            
+                            <!-- Amount Due -->
+                            <Border Margin="0,16,0,0">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBlock Text="Amount Due" 
+                                               FontSize="16" 
+                                               FontWeight="SemiBold" 
+                                               Foreground="#111827"
+                                               VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" 
+                                               Text="$0.00" 
+                                               FontSize="28" 
+                                               FontWeight="Bold" 
+                                               Foreground="#3B82F6"/>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

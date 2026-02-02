@@ -1,0 +1,79 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="60"
+             x:Class="Front_End.Components.TransactionItem"
+             HorizontalAlignment="Stretch">
+
+    <Grid ColumnDefinitions="*,Auto,Auto,Auto,Auto" HorizontalAlignment="Stretch">
+        <!-- Name and Type -->
+        <StackPanel Grid.Column="0" VerticalAlignment="Center" MinWidth="140">
+            <TextBlock Name="NameText" 
+                       Text="Client Name" 
+                       FontSize="14" 
+                       FontWeight="SemiBold" 
+                       Foreground="#111827"
+                       TextTrimming="CharacterEllipsis"/>
+            <TextBlock Name="TypeText" 
+                       Text="Service Type" 
+                       FontSize="12" 
+                       Foreground="#9CA3AF"
+                       Margin="0,2,0,0"
+                       TextTrimming="CharacterEllipsis"/>
+        </StackPanel>
+
+        <!-- Invoice Link -->
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="16,0" MinWidth="90">
+            <TextBlock Text="View Invoice" 
+                       FontSize="13" 
+                       Foreground="#3B82F6"
+                       Cursor="Hand"/>
+            <TextBlock Name="InvoiceIdText" 
+                       Text="#786483" 
+                       FontSize="11" 
+                       Foreground="#9CA3AF"
+                       Margin="0,2,0,0"/>
+        </StackPanel>
+
+        <!-- Status Badge -->
+        <Border Name="StatusBadge"
+                Grid.Column="2" 
+                CornerRadius="6" 
+                Padding="12,6"
+                Background="#FEF3C7"
+                VerticalAlignment="Center"
+                Margin="16,0"
+                MinWidth="80"
+                HorizontalAlignment="Center">
+            <TextBlock Name="StatusText" 
+                       Text="Pending" 
+                       FontSize="12" 
+                       FontWeight="SemiBold"
+                       Foreground="#D97706"
+                       HorizontalAlignment="Center"/>
+        </Border>
+
+        <!-- Amount -->
+        <TextBlock Name="AmountText"
+                   Grid.Column="3" 
+                   Text="$ 2400.00" 
+                   FontSize="14" 
+                   FontWeight="SemiBold"
+                   Foreground="#111827"
+                   VerticalAlignment="Center"
+                   Margin="16,0"
+                   MinWidth="90"
+                   TextAlignment="Right"/>
+
+        <!-- Date -->
+        <TextBlock Name="DateText"
+                   Grid.Column="4" 
+                   Text="17.06.2022" 
+                   FontSize="13" 
+                   Foreground="#9CA3AF"
+                   VerticalAlignment="Center"
+                   MinWidth="80"
+                   TextAlignment="Right"/>
+    </Grid>
+</UserControl>

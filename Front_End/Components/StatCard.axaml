@@ -1,0 +1,51 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="160"
+             x:Class="Front_End.Components.StatCard"
+             HorizontalAlignment="Stretch">
+
+    <Border Background="White" 
+            CornerRadius="20" 
+            BorderBrush="#F3F4F6" 
+            BorderThickness="1"
+            Padding="28"
+            HorizontalAlignment="Stretch"
+            MinHeight="140">
+        <StackPanel Spacing="16">
+            <!-- Icon Container -->
+            <Border Name="IconContainer"
+                    Width="48" 
+                    Height="48" 
+                    CornerRadius="12"
+                    Background="#FEF3C7"
+                    HorizontalAlignment="Left">
+                <Path Name="IconPath"
+                      Data="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                      Fill="#F59E0B" 
+                      Width="24" 
+                      Height="24" 
+                      Stretch="Uniform"
+                      HorizontalAlignment="Center" 
+                      VerticalAlignment="Center"/>
+            </Border>
+
+            <!-- Label -->
+            <TextBlock Name="LabelText"
+                       Text="CLIENTS" 
+                       FontSize="12" 
+                       FontWeight="Medium"
+                       Foreground="#9CA3AF"
+                       LetterSpacing="1"/>
+
+            <!-- Value -->
+            <TextBlock Name="ValueText"
+                       Text="12" 
+                       FontSize="32" 
+                       FontWeight="Bold"
+                       Foreground="#111827"
+                       Margin="0,-8,0,0"/>
+        </StackPanel>
+    </Border>
+</UserControl>

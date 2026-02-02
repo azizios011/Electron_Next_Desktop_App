@@ -1,0 +1,144 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="72"
+             x:Class="Front_End.Components.Navbar">
+
+    <UserControl.Styles>
+        <Style Selector="Button.navlink">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#6B7280"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.navlink:pointerover">
+            <Setter Property="Foreground" Value="#111827"/>
+        </Style>
+        <Style Selector="Button.navlink-active">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#111827"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.icon-btn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.icon-btn:pointerover">
+            <Setter Property="Background" Value="#F3F4F6"/>
+        </Style>
+        <Style Selector="Button.logo-btn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.logo-btn:pointerover">
+            <Setter Property="Opacity" Value="0.8"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Border Background="White" 
+            BorderBrush="#F3F4F6" 
+            BorderThickness="0,0,0,1"
+            Padding="64,0"
+            HorizontalAlignment="Stretch">
+        <Grid Height="72">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Clickable Logo - Opens Sidebar -->
+            <Button Grid.Column="0" 
+                    Name="LogoButton"
+                    Classes="logo-btn"
+                    VerticalAlignment="Center">
+                <StackPanel Spacing="2">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <!-- Lightning bolt icon -->
+                        <Border Width="32" Height="32" CornerRadius="8" Background="#111827">
+                            <Path Data="M13 10V3L4 14h7v7l9-11h-7z" 
+                                  Fill="White" 
+                                  Width="16" 
+                                  Height="16" 
+                                  Stretch="Uniform"
+                                  HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"/>
+                        </Border>
+                        <TextBlock Text="Invooce" 
+                                   FontSize="20" 
+                                   FontWeight="Bold" 
+                                   Foreground="#111827"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <TextBlock Text="Open Menu" 
+                               FontSize="11" 
+                               Foreground="#3B82F6"
+                               Margin="42,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Navigation Links - Center -->
+            <StackPanel Grid.Column="1" 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Center"
+                        Spacing="8"
+                        VerticalAlignment="Center">
+                <Button Classes="navlink-active" Content="Home"/>
+                <Button Classes="navlink" Content="Invoices"/>
+                <Button Classes="navlink" Content="Projects"/>
+                <Button Classes="navlink" Content="Clients"/>
+            </StackPanel>
+
+            <!-- Right Side: Search, Notifications, Profile -->
+            <StackPanel Grid.Column="2" 
+                        Orientation="Horizontal" 
+                        Spacing="8"
+                        VerticalAlignment="Center">
+                
+                <!-- Search Button -->
+                <Button Classes="icon-btn" CornerRadius="8">
+                    <Path Data="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" 
+                          Fill="#6B7280" 
+                          Width="20" 
+                          Height="20" 
+                          Stretch="Uniform"/>
+                </Button>
+
+                <!-- Notification Button -->
+                <Button Classes="icon-btn" CornerRadius="8">
+                    <Path Data="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" 
+                          Fill="#6B7280" 
+                          Width="20" 
+                          Height="20" 
+                          Stretch="Uniform"/>
+                </Button>
+
+                <!-- Profile Avatar -->
+                <Border Width="36" 
+                        Height="36" 
+                        CornerRadius="18" 
+                        Background="#10B981"
+                        Cursor="Hand">
+                    <TextBlock Text="RD" 
+                               FontSize="13" 
+                               FontWeight="SemiBold" 
+                               Foreground="White"
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"/>
+                </Border>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

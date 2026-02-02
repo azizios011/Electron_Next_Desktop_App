@@ -1,0 +1,84 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="60"
+             x:Class="Front_End.Components.ProjectItem"
+             HorizontalAlignment="Stretch">
+
+    <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto" HorizontalAlignment="Stretch">
+        <!-- Project Icon -->
+        <Border Grid.Column="0" 
+                Width="40" 
+                Height="40" 
+                CornerRadius="10"
+                Background="#F3F4F6"
+                VerticalAlignment="Center"
+                Margin="0,0,16,0">
+            <Path Name="ProjectIcon"
+                  Data="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"
+                  Fill="#6B7280" 
+                  Width="20" 
+                  Height="20" 
+                  Stretch="Uniform"
+                  HorizontalAlignment="Center" 
+                  VerticalAlignment="Center"/>
+        </Border>
+
+        <!-- Project Name and Client -->
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" MinWidth="120">
+            <TextBlock Name="ProjectNameText" 
+                       Text="Project Name" 
+                       FontSize="14" 
+                       FontWeight="SemiBold" 
+                       Foreground="#111827"
+                       TextTrimming="CharacterEllipsis"/>
+            <TextBlock Name="ClientNameText" 
+                       Text="Client Name" 
+                       FontSize="12" 
+                       Foreground="#9CA3AF"
+                       Margin="0,2,0,0"
+                       TextTrimming="CharacterEllipsis"/>
+        </StackPanel>
+
+        <!-- Status Badge -->
+        <Border Name="StatusBadge"
+                Grid.Column="2" 
+                CornerRadius="6" 
+                Padding="12,6"
+                Background="#DCFCE7"
+                VerticalAlignment="Center"
+                Margin="16,0"
+                MinWidth="90"
+                HorizontalAlignment="Center">
+            <TextBlock Name="StatusText" 
+                       Text="Completed" 
+                       FontSize="12" 
+                       FontWeight="SemiBold"
+                       Foreground="#16A34A"
+                       HorizontalAlignment="Center"/>
+        </Border>
+
+        <!-- Project Details Link -->
+        <TextBlock Name="DetailsLinkText"
+                   Grid.Column="3" 
+                   Text="Project Details" 
+                   FontSize="13" 
+                   Foreground="#3B82F6"
+                   VerticalAlignment="Center"
+                   Cursor="Hand"
+                   Margin="16,0"
+                   MinWidth="90"/>
+
+        <!-- Category -->
+        <TextBlock Name="CategoryText"
+                   Grid.Column="4" 
+                   Text="Design &amp; Creative" 
+                   FontSize="13" 
+                   Foreground="#9CA3AF"
+                   VerticalAlignment="Center"
+                   MinWidth="110"
+                   TextAlignment="Right"
+                   TextTrimming="CharacterEllipsis"/>
+    </Grid>
+</UserControl>
